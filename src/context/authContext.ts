@@ -13,7 +13,7 @@ export type AuthState = {
 }
 
 export type AuthContextValue = AuthState & {
-  login: (payload: LoginRequest) => Promise<AuthResponse>
+  login: (payload: LoginRequest, rememberMe?: boolean) => Promise<AuthResponse>
   verifyEmail: (payload: VerifyEmailRequest) => Promise<AuthResponse>
   googleLogin: (payload: GoogleLoginRequest) => Promise<AuthResponse>
   logout: () => Promise<void>

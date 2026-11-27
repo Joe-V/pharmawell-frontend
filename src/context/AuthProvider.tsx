@@ -44,15 +44,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, undefined, getInitialState)
   const queryClient = useQueryClient()
 
-  const applyAuthSession = useCallback((auth: AuthResponse) => {
-    authStorage.setSession(auth)
-    dispatch({ type: 'SET_AUTH', payload: auth.user })
-  }, [])
+ const applyAuthSession = useCallback(
+    (auth: AuthResponse, rememberMe?: boolean) => {
+      authStorage.setSession(auth, rememberMe)
+      dispatch({ type: 'SET_AUTH', payload: auth.user })
+    },
+    []
+  )
 
   const login = useCallback(
-    async (payload: LoginRequest) => {
+    async (payload: LoginRequest, rememberMe = true) => {
       const response = await authApi.login(payload)
-      applyAuthSession(response)
+      applyAuthSession(response, rememberMe)
       return response
     },
     [applyAuthSession]
