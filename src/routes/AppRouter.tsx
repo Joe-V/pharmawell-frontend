@@ -8,6 +8,7 @@ import { VerifyEmailPage } from '../pages/auth/VerifyEmailPage'
 import { GuestRoute } from './GuestRoute'
 import { ProtectedRoute } from './ProtectedRoute'
 import { RoleRoute } from './RoleRoute'
+import { PrimitivesPreview } from '../components/shared/PrimitivesPreview'
 import { DASHBOARD_ROLES, UserRole } from '../types/auth'
 
 function PlaceholderPage({ title }: { title: string }) {
@@ -25,7 +26,7 @@ export function AppRouter() {
   return (
     <Routes>
       {/* Public Storefront Routes */}
-      <Route path="/" element={<PlaceholderPage title="PharmaWell Home" />} />
+      <Route path="/" element={<PrimitivesPreview />} />
       <Route path="/categories" element={<PlaceholderPage title="All Categories" />} />
       <Route path="/products" element={<PlaceholderPage title="Product Catalog" />} />
       <Route path="/products/:productId" element={<PlaceholderPage title="Medicine Details" />} />
@@ -70,3 +71,4 @@ export function AppRouter() {
     </Routes>
   )
 }
+
